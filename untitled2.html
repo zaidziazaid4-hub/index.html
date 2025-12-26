@@ -1,0 +1,144 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Farah 🤍 A Small Game, A Big Sorry</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(135deg, #2b2b2b, #1a1a1a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #f1f1f1;
+    }
+    #game {
+      background: #111;
+      border-radius: 22px;
+      padding: 26px;
+      width: 92%;
+      max-width: 520px;
+      text-align: center;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.6);
+    }
+    h1 { color: #ff6b81; }
+    p {
+      font-size: 18px;
+      line-height: 1.7;
+      margin: 12px 0;
+    }
+    button {
+      background: #ff6b81;
+      color: white;
+      border: none;
+      padding: 12px 22px;
+      border-radius: 14px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 16px;
+    }
+    button:hover { background: #e85a70; }
+    .heart {
+      font-size: 32px;
+      margin: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .heart:hover { transform: scale(1.2); }
+    #fade { animation: fadeIn 1.5s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+<body>
+  <div id="game">
+    <h1>Farah 🤍</h1>
+    <div id="content"></div>
+  </div>  <!--
+    Add the song in the same folder and name it exactly:
+    jo-tu-nahi-to-aisa-main-kya-jeena.mp3
+  --><audio src="jo-tu-nahi-to-aisa-main-kya-jeena.mp3" autoplay loop></audio>
+
+  <script>
+    const content = document.getElementById('content');
+
+    function scene1() {
+      content.innerHTML = `<div id="fade">
+        <p>Hi Farah 🌸</p>
+        <p>This is a small game.</p>
+        <p>But the feeling behind it is real.</p>
+        <p>Before we play…</p>
+        <p><strong>I’m sorry, Farah.</strong></p>
+        <button onclick="scene2()">Start the Game 🤍</button>
+      </div>`;
+    }
+
+    function scene2() {
+      content.innerHTML = `<div id="fade">
+        <p><strong>Level 1: Collect the Sorry Hearts</strong></p>
+        <p>Each heart is one apology, Farah.</p>
+        <div id="hearts"></div>
+      </div>`;
+
+      const heartsDiv = document.getElementById('hearts');
+      let count = 0;
+      for (let i = 0; i < 6; i++) {
+        const h = document.createElement('span');
+        h.textContent = '💔';
+        h.className = 'heart';
+        h.onclick = () => {
+          h.textContent = '❤️';
+          count++;
+          if (count === 6) setTimeout(scene3, 800);
+        };
+        heartsDiv.appendChild(h);
+      }
+    }
+
+    function scene3() {
+      content.innerHTML = `<div id="fade">
+        <p><strong>Level 2: Choose the Truth</strong></p>
+        <p>Farah, pick what feels honest.</p>
+        <button onclick="scene4()">I regret hurting you</button><br>
+        <button onclick="scene4()">I should have been better</button><br>
+        <button onclick="scene4()">Your feelings mattered</button>
+      </div>`;
+    }
+
+    function scene4() {
+      content.innerHTML = `<div id="fade">
+        <p><strong>Level 3: Turn Sad into Soft</strong></p>
+        <p>Tap the hearts to change regret into warmth.</p>
+        <div id="hearts2"></div>
+      </div>`;
+
+      const heartsDiv = document.getElementById('hearts2');
+      let count = 0;
+      for (let i = 0; i < 5; i++) {
+        const h = document.createElement('span');
+        h.textContent = '💙';
+        h.className = 'heart';
+        h.onclick = () => {
+          h.textContent = '💖';
+          count++;
+          if (count === 5) setTimeout(scene5, 800);
+        };
+        heartsDiv.appendChild(h);
+      }
+    }
+
+    function scene5() {
+      content.innerHTML = `<div id="fade">
+        <p><strong>Final Level</strong></p>
+        <p>Farah, thank you for playing.</p>
+        <p>I regret what hurt you.</p>
+        <p>But I hope this made you smile… even a little 😊</p>
+        <p><strong>I’m sorry, Farah.</strong></p>
+        <p>You deserve happiness 🤍</p>
+      </div>`;
+    }
+
+    scene1();
+  </script></body>
+</html>
